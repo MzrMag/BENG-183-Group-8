@@ -23,7 +23,7 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 *	Sliding window cutting: As the window slide from either 5′end to 3′end or from 3′end to 5′, fastp evaluate the mean quality score within the window and drop the low-quality bases in each read’s head and tail.  
 *	PolyG tail trimming: polyG tail is an issue for Illumina NextSeq or NovaSeq when T or C is misidentified as G by sequencers. By determine the data sequencers using flow cell identifier, fastp automatically removes polyG tail.  
 *	Based correction: If fastp detects substantial overlap between one pair of reads, then it compares the bases within the overlapped region and performs a correction when the total number of mismatches is under a specified threshold.  
-*	Adapter trimming: fastq automatically cut adapters for both single-end and paired-end Illumina data.
+*	Adapter trimming: fastq automatically cut adapters for both single-end and paired-end Illumina data.  
    * For SE: fastq check the ends of the reads and identifying sequences that occur frequently across many reads as adapters.  
    * For PE: finding the overlap between each pair of reads enables the detection of adapter sequences.  
 *	Filtering: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.  
