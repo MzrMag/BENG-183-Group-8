@@ -26,5 +26,9 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 *	Adapter trimming: fastq automatically cut adapters for both single-end and paired-end Illumina data.  
     * For SE: fastq check the ends of the reads and identifying sequences that occur frequently across many reads as adapters.  
     * For PE: finding the overlap between each pair of reads enables the detection of adapter sequences.  
-*	Filtering: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.  
+*	Filtering: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.
+
+ ## Result
+ ![Image](fastp_result.jpg)
+As the figure demonstrates, the curve for base G is abnormal before processing and the quantity of G does not match that of cytosine (C) which violates Chargaff's rule. After fastp processing, the curve for G gets normalized and the proportions of G and C matches.  
 
