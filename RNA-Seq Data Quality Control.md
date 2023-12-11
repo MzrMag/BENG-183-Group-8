@@ -1,3 +1,13 @@
+# Raw Data
+
+## FASTQ file
+
+FASTQ is a data file format that is used to store sequencing data and quality scores. It is used to contain raw data generated from NGS sequencing technologies. 
+
+Here is a sample FASTQ file:
+![image](fastq_file.png)
+
+
 # FASTP  
 
 ## FASTP Overview  
