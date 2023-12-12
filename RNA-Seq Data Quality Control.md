@@ -1,16 +1,20 @@
 # RNA Sequencing: Quality Control for Raw Data 
 
 ## Overview of RNA-Sequencing Pipeline
-Before exploring the process of quality control for raw data, we will go through a quick recap of the RNA-sequencing pipeline. The RNA-sequencing pipeline involves a few key parts - the first being obtaining and sequencing reads from a sample (NGS), getting a FASTQ file that we perform FASTQC or Adapter Trimming on to perform quality control checks and make sure the data is usable, splice-aware mapping to the genome and counting reads associated with genes, and finally using statistical tools to analyze and identify differentially expressed genes. These processes are illustrated in the diagrams below where the figure on the left shows the specifics of preparing and sequencing the sample, while the figure on the right illustrates the workflow described above. 
+Before exploring the process of quality control for raw data, we will go through a quick recap of the RNA-sequencing pipeline. The RNA-sequencing pipeline involves a few key parts - the first being obtaining and sequencing reads from a sample (NGS), getting a FASTQ file that we perform FASTQC or Adapter Trimming on to perform quality control checks and make sure the data is usable, splice-aware mapping to the genome and counting reads associated with genes, and finally using statistical tools to analyze and identify differentially expressed genes. These processes are illustrated in the diagrams below where the figure on the left shows the specifics of preparing and sequencing the sample, while the figure on the right illustrates the workflow described above.
 
-
+<img src=rnaseq1.png width=52% height=52%>        <img src=rnaseq2.png width=39% height=39%>
 
 ## Why Quality Control? 
 Why is quality control so important? Why do we need to perform checks on our RNA data before analyzing it? 
 Think of the phrase: "Garbage in, garbage out" - if we do not have high quality data, we cannot make reasonable assumptions based on our data analysis.
+
 There are four main components or reasons for the importance of quality control. The first is the assessment of RNA quality which determines the type of library preparation and sequencing parameters required. Degraded RNA means poor library quality, reduced complexity, inefficient sequencing, and may lead to missing/misrepresented splicing variants. 
+
 The second component is raw read data - our fastq file - with critical parameters like GC content, N content, overrepresented sequences, adapter sequences, and K-mers. While the other parameters will be explored more later, let's look into overrepresented sequences specifically. Two possible cause for overrepresentation of a particular sequence are: (1) the sequence is highly biologically relevant (e.g. over expression of certain RNA because of a disease phenotype); and (2) the library is contaminated with sequences from adapters or other sources. These possible issues in the data highlight the need for quality control measures before bioinformatics applications in data analysis. 
+
 The thrid component is alignment, which is the process used to determine the best location (with least mismatches) for each read to the reference genome in sequencing analysis. During raw data quality control, it is hard to detect the capture efficiency and non-adapter contamination. (Capture efficiency is measured as the percentage of total sequenced reads mapped to the intended target region.) One specific scenario is Multiple Best Alignment which happens when a read can be aligned equally well (with the least mismatches) to more than one location on the reference genome. This will inflate the aligned read number if we directly access counting reads from the SAM/BAM file. Essentially, improper alignment could result in misinterpreted data.  
+
 The fourth and final component is gene expression analysis. The overall goal for the majority of RNA-seq studies is to compare gene expression from two or more groups. However, with many outliers, we cannot properly compare gene expression, making quality control a very useful tool and step in our workflow. 
 
 
