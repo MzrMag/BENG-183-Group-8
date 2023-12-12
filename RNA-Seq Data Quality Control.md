@@ -5,6 +5,7 @@
 FASTQ is a data file format that is used to store sequencing data and quality scores. It is used to contain raw data generated from NGS sequencing technologies. So the RNA-seqencing data is usually contained in a FASTQ file.
 
 Here is a sample FASTQ file:
+
 ![image](fastq_file.png)
 
 In the FASTQ file, each read is consist of four lines. 
@@ -16,8 +17,9 @@ In the FASTQ file, each read is consist of four lines.
 * The fourth line are the quality scores (Phred quality score for the sequence, encoded in ASCII characters).
 
 ## Phred Score
+Phred Quality Score or the Q score is measures the base call accuracy. It report the probability that the given base is called incorrectly by the sequencer. Phred score is logarithmically related to the base calling probabilities (formula shown below). So if a base is assigned a Phred or Q score of 20, it equal to the probability of an incorrect base call of 1 on 100 times or a 99% base call accuracy.
 
-
+![image](phred_score.png)
 
 # FASTP  
 
