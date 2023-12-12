@@ -21,6 +21,41 @@ Phred Quality Score or the Q score is measures the base call accuracy. It report
 
 ![image](phred_score.png)
 
+## FASTQC Report
+The FASTQC tool can be used to generate a quality check report of the FASTQ file based on the reads. A sample command would be `$ fastqc file1.fastq file2.fastq`.
+After gaining a quality check report of the file, the graphs and contents in the report can indicate how good the data is.
+For example, here is a graph that indicate bad **Phred score** across all reads.
+
+![Image](bad_score.png)
+
+If the yellow boxes that represent the Phred scores of the bases lands in the green area (scores greater than 28), it means they had good quality calls. If the boxes lands in the red area (scores less than 20), it means they had bad quality calls. Greater Phred scores represent better base calls.
+
+Here is a graph that represent the **N content** in the sequence.
+
+![Image](N_content.png)
+
+If a sequencer cannot make a base call with sufficient confidence, then it normally substitute the base read with a N.
+So it raise a warning if any position in reads have an N content > 5%. And it give an error if the N content is > 20%.
+Significant or large proportions of Ns usually indicate a general loss of quality, so it may indicate bad data.
+In the example graph above, most of the positions have N content under 5%. And only in a few position the N content is about 5%, which will raise a warning.
+
+Below is a graph that represent the **duplication level** across sequences.
+
+![Image](duplication.png)
+
+In a properly diverse library, most sequences should fall into the far left of the plot, which indicate low duplication level. A high duplication level is more likely to indicate some kind of enrichment bias or presence of low complexity contaminants that may tend to produce spikes to the right side of the plot. In the plot above, mores sequences are in the far left. But there is a spike in the right side, which indicate high duplication level for some sequences.
+
+The plot below shows the **adapter content** in the data.
+
+![Image](adapter.png)
+
+The adapter content module will be shown if there is a significant portion of the insert sizes smaller than the length of the reads in the library. It indicate that the sequences' adapters need to be trimmed before proceeding any downstream analysis like read alignments.
+The graph will indicate a warning if any sequence is present in > 5% of all reads. And it will indicate an error if the adapter content is > 10% of all reads.
+In the plot shown above, no warning or error would be raised because there's no adapter content(%) that is greater than 5% across all positions in read. So it indicate good data.
+
+After gaining a quality check report to see whether some features of the data indicate good or bad, further trimming and cleaning of the data can be done to clean the data and increase its quality.
+
+
 # FASTP  
 
 ## FASTP Overview  
