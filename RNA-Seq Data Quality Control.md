@@ -2,10 +2,21 @@
 
 ## FASTQ file
 
-FASTQ is a data file format that is used to store sequencing data and quality scores. It is used to contain raw data generated from NGS sequencing technologies. 
+FASTQ is a data file format that is used to store sequencing data and quality scores. It is used to contain raw data generated from NGS sequencing technologies. So the RNA-seqencing data is usually contained in a FASTQ file.
 
 Here is a sample FASTQ file:
 ![image](fastq_file.png)
+
+In the FASTQ file, each read is consist of four lines. 
+* The first line is the sequence header which starts with an "@" (not a ">")!.
+  * From the leading "@" to the first whitespace character is considered as the sequence identifier, which consist information about the cluster and sequence run (like flow cell lane, flow cell ID, run ID, instrument name).
+  * Then the contents after the first whitespace are the sequence description.
+* The second line is the sequence or the base-calls in standard letter code (A, C, G, T, N).
+* The third line starts with a "+" and can have the same sequence identifier after, but usually just simply a "+" as a separator.
+* The fourth line are the quality scores (Phred quality score for the sequence, encoded in ASCII characters).
+
+## Phred Score
+
 
 
 # FASTP  
