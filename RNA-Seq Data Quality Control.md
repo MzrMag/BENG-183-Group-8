@@ -114,3 +114,11 @@ As the figure demonstrates, the curve for base G is abnormal before processing a
  ![Image](fastp_report.png)  
  The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
 
+ ## References
+ 1. Chen, S., Zhou, Y., Chen, Y., &amp; Gu, J. (2018, September 1). Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics (Oxford, England). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6129281/
+ 2. fastp report . Fastp report at 2018-06-27 10:32:27. (n.d.). https://opengene.org/fastp/fastp.html
+ 3. Illumina. (n.d.). Quality scores for next-generation sequencing - Illumina. Sequencing. https://www.illumina.com/Documents/products/technotes/technote_Q-Scores.pdf
+ 4. Mary Piper, L. P. (2020, February 24). Single-cell RNA-seq: Quality control analysis. Introduction to single-cell RNA-seq. https://hbctraining.github.io/scRNA-seq_online/lessons/04_SC_quality_control.html
+ 5. Mary Piper, R. K. (2017, September 20). Quality Control Using FASTQC. Introduction to RNA-Seq using high-performance computing - ARCHIVED. https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html
+ 6. Quality scores. NGS Analysis. (2018, January 9). https://learn.gencore.bio.nyu.edu/ngs-file-formats/quality-scores/
+ 7. Sheng, Q., Vickers, K., Zhao, S., Wang, J., Samuels, D. C., Koues, O., Shyr, Y., &amp; Guo, Y. (2017, July 1). Multi-perspective quality control of Illumina RNA sequencing data analysis. Briefings in functional genomics. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5860075/
