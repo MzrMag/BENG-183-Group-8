@@ -99,9 +99,8 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 
 ### Paired-end processing workflow：
 *	UMI(Unique Molecular Identifiers) preprocessing: Process data containing UMIs by making the UMI to be the read’s identifier.  
-*	Global trimming: trim all reads in the front or the tail.  
 *	Sliding window cutting: As the window slide from either 5′end to 3′end or from 3′end to 5′, fastp evaluate the mean quality score within the window and drop the low-quality bases in each read’s head and tail.  
-*	PolyG tail trimming: polyG tail is an issue for Illumina NextSeq or NovaSeq when T or C is misidentified as G by sequencers. By determine the data sequencers using flow cell identifier, fastp automatically removes polyG tail.  
+*	PolyG tail trimming: Becasue Illumina NextSeq or NovaSeq use two-color chemistry to represents the 4 DNA bases, sequencers may misidentify T or C as G. By determine the data sequencers using flow cell identifier, fastp automatically removes polyG tail.  
 *	Based correction: If fastp detects substantial overlap between one pair of reads, then it compares the bases within the overlapped region and performs a correction when the total number of mismatches is under a specified threshold.  
 *	Adapter trimming: fastq automatically cut adapters for both single-end and paired-end Illumina data.  
     * For SE: fastq check the ends of the reads and identifying sequences that occur frequently across many reads as adapters.  
@@ -112,7 +111,7 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
  ![Image](fastp_result.jpg)  
 As the figure demonstrates, the curve for base G is abnormal before processing and the quantity of G does not match that of cytosine (C) which violates Chargaff's rule. After fastp processing, the curve for G gets normalized and the proportions of G and C matches.  
  ![Image](fastp_report.png)  
- The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
+ The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. The 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
 
  ## References
  1. Chen, S., Zhou, Y., Chen, Y., &amp; Gu, J. (2018, September 1). Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics (Oxford, England). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6129281/
