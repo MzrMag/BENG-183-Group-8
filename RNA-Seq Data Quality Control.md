@@ -109,7 +109,7 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 *	Filtering: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.
 
  ## Result
- ![Image](fastp_result.jpg)
+ ![Image](fastp_result.jpg)  
 As the figure demonstrates, the curve for base G is abnormal before processing and the quantity of G does not match that of cytosine (C) which violates Chargaff's rule. After fastp processing, the curve for G gets normalized and the proportions of G and C matches.  
  ![Image](fastp_report.png)  
  The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
