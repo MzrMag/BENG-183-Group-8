@@ -114,7 +114,7 @@ As the figure demonstrates, the curve for base G is abnormal before fastp proces
 
  ![Image](fastp_report.png)  
  
- The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. The 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
+ The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. The 363.76K reads with low quality and 34.8K reads that are too short.
 
  ## References
  1. Chen, S., Zhou, Y., Chen, Y., &amp; Gu, J. (2018, September 1). Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics (Oxford, England). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6129281/
