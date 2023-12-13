@@ -75,7 +75,7 @@ The adapter content module will be shown if there is a significant portion of th
 The graph will indicate a warning if any sequence is present in > 5% of all reads. And it will indicate an error if the adapter content is > 10% of all reads.
 In the plot shown above, no warning or error would be raised because there's no adapter content(%) that is greater than 5% across all positions in read. So it indicate good data.
 
-After gaining a quality check report to see whether some features of the data indicate good or bad, further trimming and cleaning of the data can be done to clean the data and increase its quality. A example tool that can be used to trim and apply quality control to data is FASTP.
+After gaining a quality check report to see whether some features of the data indicate good or bad, further trimming and cleaning of the data can be done to clean the data and increase its quality. An example tool that can be used to trim and apply quality control to data is FASTP.
 
 
 # FASTP  
@@ -90,32 +90,35 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 * Fastp parallelly process the input fastq files using multi-threading techniques to improve the efficiency.  
 * It loads reads from FASTQ files and groups them into packs.  
 * There is a one-on-one relationship between each pack of reads and the thread assigned to process it.  
-  * Within each thread, each read from the pack is processed separatedly.
-* Each thread operates independently to process its subset of reads and store reads’ statistical information in its own environment for later use.
-  * This information may include per-cycle quality profiles, per-cycle base contents, results from adapter trimming and k-mer counts.
-* After all the reads have been processed, these statistical information will be merged together.
-* Fastp’s reporter will generate reports in both HTML (visualization) and JSON formats.
+  * In each thread, each read from the pack is processed.  
+* Each thread operates independently to process its subset of reads and store reads’ statistical information in its own environment for later use.  
+  * The information may include quality profiles and base content on a per-cycle basis as well as results from adapter trimming and k-mer counts.  
+* After all the reads have been processed, their statistical information will be combined into one.  
+* Fastp’s reporter will generate reports in both HTML (visualization) and JSON formats.  
   * Reports provide both pre-filtering and post-filtering statistical information for comparison purposes.  
 
 ### Paired-end processing workflow：
-*	**UMI**(Unique Molecular Identifiers) preprocessing: Process data containing UMIs by shifting the UMI information to the read identifier. Using UMIs to identify and remove duplications can produce high-quality consensus reads.  
+*	**UMI**(Unique Molecular Identifiers) preprocessing: Process data containing UMIs by shifting the UMI information to the read identifier. Using UMIs to identify and remove duplications as well as produce high-quality consensus reads via error correction.  
 *	**Sliding window cutting**: As the window slide from either 5′end to 3′end or from 3′end to 5′, fastp evaluate the mean quality score within the window and remove low-quality bases in the head and tail of each read.  
-*	**PolyG tail trimming**: Becasue Illumina NextSeq or NovaSeq use two-color chemistry to represent the 4 DNA bases, sequencers may misidentify some T and C as G. By determine the data sequencers using flow cell identifier, fastp automatically removes the polyG tail.  
+*	**PolyG tail trimming**: Becasue Illumina NextSeq or NovaSeq use two-color chemistry to represent the four DNA bases, sequencers may misidentify some T and C as G. By determine the data sequencers using flow cell identifier, fastp automatically removes the polyG tail.  
 *	**Base correction**: If fastp detects substantial overlap between one pair of reads, then it compares the bases within the overlapped region and performs a correction based on the read with high-quality score. Base correction is possible if the total number of mismatches is under a specified threshold.  
 *	**Adapter trimming**: For both single-end and paired-end Illumina data, fastq can automatically detect and cut adapters.  
-    * For single-end data: fastq checks the ends of the reads and identifying sequences that occur frequently across the first 1 Million(default setting) reads as adapters.  
+    * For single-end data: fastq checks the ends of the reads and identifying sequences that occur frequently across the first 1 million(default) reads as adapters.  
     * For paired-end data: fastq finds the overlap between each pair of reads to enable the detection of adapter sequences.  
 *	**Filtering**: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.
 
  ## Result
  ![Image](fastp_result.jpg)  
-As the figure demonstrates, the curve for base G is abnormal before processing and the quantity of G does not match that of cytosine (C) which violates Chargaff's rule. After fastp processing, the curve for G gets normalized and the proportions of G and C matches.  
+ 
+As the figure demonstrates, the curve for base G is abnormal before fastp processing because it separates from the curve for base C. Meanwhile, the quantity of G does not match that of C, indicating the violation of Chargaff's rule. After fastp processing, the curve for G gets normalized and the proportions of G and C match.  
+
  ![Image](fastp_report.png)  
+ 
  The figure demonstrates the pre-filtering and post-filtering statistical values for a sample data. The 363.76K reads with low quality is removed as well as 34.8K reads that are too short.
 
  ## References
  1. Chen, S., Zhou, Y., Chen, Y., &amp; Gu, J. (2018, September 1). Fastp: An ultra-fast all-in-one FASTQ preprocessor. Bioinformatics (Oxford, England). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6129281/
- 2. fastp report . Fastp report at 2018-06-27 10:32:27. (n.d.). https://opengene.org/fastp/fastp.html
+ 2. fastp report. Fastp report at 2018-06-27 10:32:27. (n.d.). https://opengene.org/fastp/fastp.html
  3. Illumina. (n.d.). Quality scores for next-generation sequencing - Illumina. Sequencing. https://www.illumina.com/Documents/products/technotes/technote_Q-Scores.pdf
  4. Mary Piper, L. P. (2020, February 24). Single-cell RNA-seq: Quality control analysis. Introduction to single-cell RNA-seq. https://hbctraining.github.io/scRNA-seq_online/lessons/04_SC_quality_control.html
  5. Mary Piper, R. K. (2017, September 20). Quality Control Using FASTQC. Introduction to RNA-Seq using high-performance computing - ARCHIVED. https://hbctraining.github.io/Intro-to-rnaseq-hpc-O2/lessons/02_assessing_quality.html
