@@ -90,7 +90,7 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
 * Fastp parallelly process the input fastq files using multi-threading techniques to improve the efficiency.  
 * It loads reads from FASTQ files and groups them into packs.  
 * There is a one-on-one relationship between each pack of reads and the thread assigned to process it.  
-  * Within each thread, each read from the pack is individually processed.
+  * Within each thread, each read from the pack is processed separatedly.
 * Each thread operates independently to process its subset of reads and store reads’ statistical information in its own environment for later use.
   * This information may include per-cycle quality profiles, per-cycle base contents, results from adapter trimming and k-mer counts.
 * After all the reads have been processed, these statistical information will be merged together.
@@ -98,13 +98,13 @@ Fastp is a tool designed for preprocessing FASTQ files prior to downstream analy
   * Reports provide both pre-filtering and post-filtering statistical information for comparison purposes.  
 
 ### Paired-end processing workflow：
-*	**UMI**(Unique Molecular Identifiers) preprocessing: Process data containing UMIs by making the UMI to be the read’s identifier.  
-*	**Sliding window cutting**: As the window slide from either 5′end to 3′end or from 3′end to 5′, fastp evaluate the mean quality score within the window and drop the low-quality bases in each read’s head and tail.  
-*	**PolyG tail trimming**: Becasue Illumina NextSeq or NovaSeq use two-color chemistry to represents the 4 DNA bases, sequencers may misidentify T or C as G. By determine the data sequencers using flow cell identifier, fastp automatically removes polyG tail.  
-*	**Based correction**: If fastp detects substantial overlap between one pair of reads, then it compares the bases within the overlapped region and performs a correction when the total number of mismatches is under a specified threshold.  
-*	**Adapter trimming**: fastq automatically cut adapters for both single-end and paired-end Illumina data.  
-    * For SE: fastq check the ends of the reads and identifying sequences that occur frequently across many reads as adapters.  
-    * For PE: finding the overlap between each pair of reads enables the detection of adapter sequences.  
+*	**UMI**(Unique Molecular Identifiers) preprocessing: Process data containing UMIs by shifting the UMI information to the read identifier. Using UMIs to identify and remove duplications can produce high-quality consensus reads.  
+*	**Sliding window cutting**: As the window slide from either 5′end to 3′end or from 3′end to 5′, fastp evaluate the mean quality score within the window and remove low-quality bases in the head and tail of each read.  
+*	**PolyG tail trimming**: Becasue Illumina NextSeq or NovaSeq use two-color chemistry to represent the 4 DNA bases, sequencers may misidentify some T and C as G. By determine the data sequencers using flow cell identifier, fastp automatically removes the polyG tail.  
+*	**Base correction**: If fastp detects substantial overlap between one pair of reads, then it compares the bases within the overlapped region and performs a correction based on the read with high-quality score. Base correction is possible if the total number of mismatches is under a specified threshold.  
+*	**Adapter trimming**: For both single-end and paired-end Illumina data, fastq can automatically detect and cut adapters.  
+    * For single-end data: fastq checks the ends of the reads and identifying sequences that occur frequently across the first 1 Million(default setting) reads as adapters.  
+    * For paired-end data: fastq finds the overlap between each pair of reads to enable the detection of adapter sequences.  
 *	**Filtering**: reads with low quality, high proportions of N contents, or length under certain thresholds will be removed.
 
  ## Result
