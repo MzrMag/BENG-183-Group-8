@@ -18,6 +18,8 @@
 
      c. Result
 
+5. References
+
 ## Overview of RNA-Sequencing Pipeline
 Before exploring the process of quality control for raw data, we will go through a quick recap of the RNA-sequencing pipeline. The RNA-sequencing pipeline involves a few key parts - the first being obtaining and sequencing reads from a sample (NGS), getting a FASTQ file that we perform FASTQC or Adapter Trimming on to perform quality control checks and make sure the data is usable, splice-aware mapping to the genome and counting reads associated with genes, and finally using statistical tools to analyze and identify differentially expressed genes. These processes are illustrated in the diagrams below where the figure on the left shows the specifics of preparing and sequencing the sample, while the figure on the right illustrates the workflow described above.
 
