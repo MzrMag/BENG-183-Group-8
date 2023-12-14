@@ -1,6 +1,6 @@
 # RNA Sequencing: Quality Control for Raw Data 
-
-# Table of Content  
+   Maggie Ma, Nimrit Kaur, Zhirui Zhu:) 
+# Table of Contents  
 1. Overview of RNA-Sequencing Pipeline
 2. Why Do We Need Quality Control for RNA-seq Data?
 3. Raw Data
